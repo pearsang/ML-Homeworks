@@ -1,6 +1,8 @@
 import numpy as np
 
 # EXERCISE 2
+learning_rate = 0.1
+
 x1 = np.matrix([[1], [1], [1], [1]])
 x2 = np.matrix([[1], [0], [0], [-1]])
 
@@ -21,15 +23,15 @@ def activationFunction(x):
 def derivativeActivationFunction(x):
     for i in range(len(x)):
         for j in range(len(x[i])):
-            x[i][j] = (2/(np.exp(0.5*x[i][j] - 2) + np.exp(-0.5*x[i][j] + 2))**2)
-    return x
+            x[i][j] = 0.5 * (1 - np.tanh(0.5 * x[i][j] - 2) ** 2)
 
 
 # Calculations for x1
 a1_1 = W1.dot(x1) + b1
 v1_1 = activationFunction(a1_1)
+print(a1_1)
 
-print(derivativeActivationFunction(a1_1))
+
 
 a2_1 = W2.dot(v1_1) + b2
 v2_1 = activationFunction(a2_1)
@@ -52,23 +54,27 @@ v3_2 = activationFunction(a3_2)
 # Derivatives - hadamard product
 
 # for x1
-temp = np.subtract(t1, v3_1)
+temp = np.subtract(v3_1, t1)
 d3_1 = np.multiply(derivativeActivationFunction(a3_1), temp)
 d2_1 = np.multiply(derivativeActivationFunction(a2_1), W3.transpose().dot(d3_1))
 d1_1 = np.multiply(derivativeActivationFunction(a1_1), W2.transpose().dot(d2_1))
-print(W2.transpose().dot(d2_1))
-print(derivativeActivationFunction(a1_1))
-print("D3_1: \n", d3_1)
-print("D2_1: \n", d2_1)
-print("D1_1: \n", d1_1)
+print(d1_1)
 
 
 # for x2
-temp = np.subtract(t2, v3_2)
+temp = np.subtract(v3_2, t2)
 d3_2 = np.multiply(derivativeActivationFunction(a3_2), temp)
 d2_2 = np.multiply(derivativeActivationFunction(a2_2), W3.transpose().dot(d3_2))
 d1_2 = np.multiply(derivativeActivationFunction(a1_2), W2.transpose().dot(d2_2))
 
-# print fisrt element of d1_1 with 20 decimal places
-print("D1_1: \n", d1_1[0].round(20))
 
+## update weigths ESTA MAL
+
+w1_update = np.subtract(W1, learning_rate * (d1_1 + d1_2))
+w2_update = np.subtract(W2, learning_rate * (d2_1 + d2_2))
+w3_update = np.subtract(W3, learning_rate * (d3_1 + d3_2))
+
+
+
+
+### FALTA UPDATE DOS BIASES

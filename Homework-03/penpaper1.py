@@ -31,11 +31,12 @@ phiTphi = np.matmul(phiT, phi)
 pseudo_inverse = np.linalg.inv(phiTphi + lmbda * np.identity(4))
 phyTtargets = phiT.dot(targets)
 weights = pseudo_inverse.dot(phyTtargets)
-
+print(weights)
 
 
 # B)
 prediction = phi.dot(weights)
+print("Prediction: ", prediction)
 
 #root mean square error
 rmse = np.sqrt(np.mean((prediction - targets) ** 2))
