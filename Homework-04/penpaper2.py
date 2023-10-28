@@ -79,22 +79,22 @@ y42 = pi2 * p_x4_c2
 
 # M-STEP - maximization step
 
-N1 = y11 + y21 + y31 + y41
-N2 = y12 + y22 + y32 + y42
+N1 = y21 + y31 + y41
+N2 = y22 + y32 + y42
 
-u1 = (1/N1) * (y11 * x1 + y21 * x2 + y31 * x3 + y41 * x4)
-u2 = (1/N2) * (y12 * x1 + y22 * x2 + y32 * x3 + y42 * x4)
+u1 = (1/N1) * (y21 * x2 + y31 * x3 + y41 * x4)
+u2 = (1/N2) * (y22 * x2 + y32 * x3 + y42 * x4)
 
-cov_matrix1 = (1/N1) * (y11 * (x1 - u1).dot((x1 - u1).transpose()) + y21 * (x2 - u1).dot((x2 - u1).transpose()) + y31 * (x3 - u1).dot((x3 - u1).transpose()) + y41 * (x4 - u1).dot((x4 - u1).transpose()))
-cov_matrix2 = (1/N2) * (y12 * (x1 - u2).dot((x1 - u2).transpose()) + y22 * (x2 - u2).dot((x2 - u2).transpose()) + y32 * (x3 - u2).dot((x3 - u2).transpose()) + y42 * (x4 - u2).dot((x4 - u2).transpose()))
+cov_matrix1 = (1/N1) * (y21 * (x2 - u1).dot((x2 - u1).transpose()) + y31 * (x3 - u1).dot((x3 - u1).transpose()) + y41 * (x4 - u1).dot((x4 - u1).transpose()))
+cov_matrix2 = (1/N2) * (y22 * (x2 - u2).dot((x2 - u2).transpose()) + y32 * (x3 - u2).dot((x3 - u2).transpose()) + y42 * (x4 - u2).dot((x4 - u2).transpose()))
 
 pi1 = N1 / (N1 + N2)
 pi2 = N2 / (N1 + N2)
 
-""" print("Updated Values:")
+print("Updated Values:")
 print("u1:\n", u1)
 print("u2:\n", u2)
 print("cov_matrix1:\n", cov_matrix1)
 print("cov_matrix2:\n", cov_matrix2)
 print("pi1:\n", pi1)
-print("pi2:\n", pi2) """
+print("pi2:\n", pi2)
