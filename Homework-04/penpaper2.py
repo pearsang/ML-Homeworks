@@ -39,7 +39,6 @@ def gaussianDistribution(x, u, cov_matrix):
 
 # probability of x1 given that cluster 1: p(x1| c =1)
 p_x1_c1 = p1 * gaussianDistribution(x1[1:], u1, cov_matrix1)
-print("p_x1_c1:\n", p_x1_c1)
 
 # probability of x1 given that cluster 2: p(x1| c =2)
 p_x1_c2 = p2 * gaussianDistribution(x1[1:], u2, cov_matrix2)
@@ -62,7 +61,6 @@ p_x4_c1 = p1 * gaussianDistribution(x4[1:], u1, cov_matrix1)
 
 # probability of x4 given that cluster 2: p(x4| c =2)
 p_x4_c2 = p2 * gaussianDistribution(x4[1:], u2, cov_matrix2)
-
 
 # joint probability - ynk = p(c = k, xn)
 y1_1 = pi1 * p_x1_c1
@@ -91,8 +89,8 @@ y42 = y4_2 / (y4_1 + y4_2)
 
 # M-STEP - maximization step
 
-N1 = y21 + y31 + y41
-N2 = y22 + y32 + y42
+N1 = y11 + y21 + y31 + y41
+N2 = y12 + y22 + y32 + y42
 
 u1 = (1/N1) * (y21 * x2 + y31 * x3 + y41 * x4)
 u2 = (1/N2) * (y22 * x2 + y32 * x3 + y42 * x4)
@@ -103,10 +101,13 @@ cov_matrix2 = (1/N2) * (y22 * (x2 - u2).dot((x2 - u2).transpose()) + y32 * (x3 -
 pi1 = N1 / (N1 + N2)
 pi2 = N2 / (N1 + N2)
 
-print("Updated Values:")
+print(pi1)
+print(pi2)
+
+""" print("Updated Values:")
 print("u1:\n", u1)
 print("u2:\n", u2)
 print("cov_matrix1:\n", cov_matrix1)
 print("cov_matrix2:\n", cov_matrix2)
 print("pi1:\n", pi1)
-print("pi2:\n", pi2)
+print("pi2:\n", pi2) """
