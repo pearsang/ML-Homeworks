@@ -65,17 +65,29 @@ p_x4_c2 = p2 * gaussianDistribution(x4[1:], u2, cov_matrix2)
 
 
 # joint probability - ynk = p(c = k, xn)
-y11 = pi1 * p_x1_c1
-y12 = pi2 * p_x1_c2
+y1_1 = pi1 * p_x1_c1
+y1_2 = pi2 * p_x1_c2
 
-y21 = pi1 * p_x2_c1
-y22 = pi2 * p_x2_c2
+y11 = y1_1 / (y1_1 + y1_2)
+y12 = y1_2 / (y1_1 + y1_2)
 
-y31 = pi1 * p_x3_c1
-y32 = pi2 * p_x3_c2
+y2_1 = pi1 * p_x2_c1
+y2_2 = pi2 * p_x2_c2
 
-y41 = pi1 * p_x4_c1
-y42 = pi2 * p_x4_c2
+y21 = y2_1 / (y2_1 + y2_2)
+y22 = y2_2 / (y2_1 + y2_2)
+
+y3_1 = pi1 * p_x3_c1
+y3_2 = pi2 * p_x3_c2
+
+y31 = y3_1 / (y3_1 + y3_2)
+y32 = y3_2 / (y3_1 + y3_2)
+
+y4_1 = pi1 * p_x4_c1
+y4_2 = pi2 * p_x4_c2
+
+y41 = y4_1 / (y4_1 + y4_2)
+y42 = y4_2 / (y4_1 + y4_2)
 
 # M-STEP - maximization step
 
