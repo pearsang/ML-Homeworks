@@ -78,8 +78,6 @@ def calculate_silhouette(a, b):
     else:
         return b/a - 1
 
-
-
 # ALÍNEA A
 
 #E-STEP
