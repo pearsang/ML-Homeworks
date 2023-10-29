@@ -186,4 +186,50 @@ def manhattan_distance(x, y):
 # a = medium distance from xi to the points in the same cluster
 # minimum medium distance from x1 to the points of another cluster - in this case we only have two clusters
 
-a_x1
+a_x1 = manhattan_distance(x1, x4)
+a_x2 = manhattan_distance(x2, x3)
+a_x3 = manhattan_distance(x3, x2)
+a_x4 = manhattan_distance(x4, x1)
+
+b_x1 = 0.5 * (manhattan_distance(x1, x2) + manhattan_distance(x1, x3))
+b_x2 = 0.5 * (manhattan_distance(x2, x1) + manhattan_distance(x2, x4))
+b_x3 = 0.5 * (manhattan_distance(x3, x1) + manhattan_distance(x3, x4))
+b_x4 = 0.5 * (manhattan_distance(x4, x2) + manhattan_distance(x4, x3))
+
+print("a_x1: ", a_x1)
+print("a_x2: ", a_x2)
+print("a_x3: ", a_x3)
+print("a_x4: ", a_x4)
+
+print("b_x1: ", b_x1)
+print("b_x2: ", b_x2)
+print("b_x3: ", b_x3)
+print("b_x4: ", b_x4)
+
+if(a_x1 < b_x1):
+    s_x1 = 1 - a_x1/b_x1
+else:
+    s_x1 = b_x1/a_x1 - 1
+    
+if(a_x2 < b_x2):
+    s_x2 = 1 - a_x2/b_x2
+else:
+    s_x2 = b_x2/a_x2 - 1
+
+if(a_x3 < b_x3):
+    s_x3 = 1 - a_x3/b_x3
+else:
+    s_x3 = b_x3/a_x3 - 1
+
+if(a_x4 < b_x4):
+    s_x4 = 1 - a_x4/b_x4
+else:
+    s_x4 = b_x4/a_x4 - 1
+
+s_c1 = np.mean([s_x2, s_x3])
+s_c2 = np.mean([s_x1, s_x4])
+
+print("s_c1: ", s_c1)
+print("s_c2: ", s_c2)
+
+
